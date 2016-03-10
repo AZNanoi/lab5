@@ -5,22 +5,19 @@
 // the next time.
 dinnerPlannerApp.factory('Dinner',function ($resource) {
   
-  var numberOfGuests = 1;
+  var numberofguests = 1;
 
   this.dishesselected = [];
 
   this.category = [];
 
-  this.DishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:25,api_key:'sV1fPGQKrO0b6oUYb6w9kLI8BORLiWox'});
-  
-  this.Dish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'sV1fPGQKrO0b6oUYb6w9kLI8BORLiWox'});
 
-  this.getNumberOfGuests = function() {
-    return numberOfGuests;
+  this.getNumberOfGuests = function(){
+    return numberofguests;
   }
 
   this.setNumberOfGuests = function(num) {
-    numberOfGuests = num;
+    numberofguests = num;
   }
 
   //Returns the dish that is on the menu for selected type 
@@ -111,7 +108,9 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     }
   }
 
-
+  this.DishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:25,api_key:'H9n1zb6es492fj87OxDtZM9s5sb29rW3'});
+  
+  this.Dish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'H9n1zb6es492fj87OxDtZM9s5sb29rW3'}); 
 
   // TODO in Lab 5: Add your model code from previous labs
   // feel free to remove above example code

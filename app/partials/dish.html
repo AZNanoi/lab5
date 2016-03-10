@@ -3,3 +3,34 @@
 
 <!-- TODO in Lab 5: Display the dish information including image, Description, 
 Instructions, Ingredients and total cost. -->
+<br/>
+<br/>
+	<div>
+		<img ng-src="{{dish.ImageURL}}" style="width:300px; height:300px;"/>
+		{{numberOfGuests}}
+		</br>
+		<h1>{{dish.Title}}</h1>
+		</br>
+		<h2>Description</h2>
+		{{dish.Description}} 
+		</br>
+		<h2>Instructions</h2>
+		{{dish.Instructions}}
+		</br>
+		<h2>Ingredients</h2>
+		<table>
+			<tr ng-repeat="element in dish.Ingredients">
+				<td width=100px>{{element.MetricQuantity*numberOfGuests}} {{element.MetricUnit}}</td>
+				<td width=300px>{{element.Name}}</td>
+				<td width=100px>{{element.MetricQuantity*numberOfGuests}} SEK</td>
+			</tr>
+		</table>
+
+		</br>
+		</br>
+		<span>Total Cost: SEK {{price}}</span>
+		</br>
+		<a href="#/search" ng-click="confirmButton()" class="btn btn-primary">Confirm</a>
+		<a href="#/search" class="btn btn-primary">Back</a>
+		{{status}}
+	</div>
