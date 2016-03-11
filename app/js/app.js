@@ -53,3 +53,14 @@ dinnerPlannerApp.config(['$routeProvider',
         redirectTo: '/home'
       });
   }]);
+
+dinnerPlannerApp.filter("getDishCost", function(){
+  return function(ingredients){
+    var price = 0;
+    console.log(ingredients.length);
+    for (i=0; i<ingredients.length; i++){
+      price = price + ingredients[i].MetricQuantity;
+    }
+    return price;
+  }
+});
