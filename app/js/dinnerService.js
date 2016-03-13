@@ -3,11 +3,11 @@
 // dependency on any service you need. Angular will insure that the
 // service is created first time it is needed and then just reuse it
 // the next time.
-dinnerPlannerApp.factory('Dinner',function ($resource) {
+dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
   
   var numberofguests = 1;
 
-  this.dishesselected = [179508];
+  this.dishesselected = [];
 
   this.category = [];
 
@@ -17,6 +17,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
   }
 
   this.setNumberOfGuests = function(num) {
+    $cookieStore.put('numberOfGuests', num);
     numberofguests = num;
   }
 
@@ -90,9 +91,12 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     if(catExist === false && isExist === false){
       this.category.push(cat);
       this.dishesselected.push(id);
+      $cookieStore.put(cat, id);
     }else if (catExist === true && isExist === false){
       this.dishesselected.splice(indexId, 1);
       this.dishesselected.push(id);
+      $cookieStore.remove(cat);
+      $cookieStore.put(cat, id);
     }else if (catExist === true && isExist === true){
       alert("This dish is already selected!");
     }
@@ -102,14 +106,16 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
   this.removeDishFromMenu = function(id) {
     for(key in this.dishesselected){
       if (id == this.dishesselected[key]){
+        cat=this.category[key];
         this.dishesselected.splice(key, 1);
         this.category.splice(key, 1);
+        $cookieStore.remove(cat);
       }
     }
   }
-
+  // Get the results of a search
   this.DishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:25,api_key:'H9n1zb6es492fj87OxDtZM9s5sb29rW3'},{get:{method:"GET",cache:true}});
-  
+  // Get a dish with a specific id
   this.Dish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'H9n1zb6es492fj87OxDtZM9s5sb29rW3'},{get:{method:"GET",cache:true}}); 
 
   // TODO in Lab 5: Add your model code from previous labs
