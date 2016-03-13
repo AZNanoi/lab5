@@ -21,7 +21,7 @@
 			<button type='button' ng-click="removeDish($event)" class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
 		</div>
 		<div style='overflow:hidden;'>
-			<span style='float:left;'>pending</span><span id='pending' style='float:right;'>0.00</span>
+			<span style='float:left;'>pending</span><span id='pending' style='float:right;'>{{pending}}</span>
 		</div>
 		<hr/>
 		<span id='menuCost' style='float:right;'>Total cost: {{totalCost}} SEK</span>

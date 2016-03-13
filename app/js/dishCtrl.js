@@ -7,6 +7,7 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
   // TODO in Lab 5: you need to get the dish according to the routing parameter
   // $routingParams.paramName
   // Check the app.js to figure out what is the paramName in this case
+  $scope.pending = 0;
   $scope.dish = "";
   $scope.price = 0;
   $scope.cat = "";
@@ -21,6 +22,8 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
    	  p = p + parseFloat(data.Ingredients[i].MetricQuantity)*Dinner.getNumberOfGuests();
     };
     $scope.price = Number(p).toFixed(2);
+    $scope.pending = $scope.price;
+    $scope.totalCost = Number(parseFloat($scope.totalCost) + parseFloat($scope.pending)).toFixed(2);
   },function(data){
     $scope.status = "There was an error";
   });
@@ -39,6 +42,7 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
 
   $scope.confirmButton = function($event){
   	Dinner.addDishToMenu(dishId, $scope.cat);
+    $scope.pending = 0;
   	return false;
   }
   

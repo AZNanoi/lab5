@@ -26,7 +26,8 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope,Dinner) {
 
 	$scope.getTotalMenuPrice = function(){
 		Dinner.getTotalMenuPrice().promise.then(function(res){
-			$scope.totalCost = Number(res).toFixed(2);
+			var p = parseFloat(res) + parseFloat($scope.$parent.pending);
+			$scope.$parent.totalCost = Number(p).toFixed(2);
 		});
 	}
 	
