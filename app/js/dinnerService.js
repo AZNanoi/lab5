@@ -3,21 +3,26 @@
 // dependency on any service you need. Angular will insure that the
 // service is created first time it is needed and then just reuse it
 // the next time.
-dinnerPlannerApp.factory('Dinner',function ($q, $resource) {
+dinnerPlannerApp.factory('Dinner',function ($q, $resource, $cookieStore) {
   
-  var numberofguests = 1;
+  $cookieStore.put("numberofguests", 1);
 
-  this.dishesselected = [];
+  if("undefined" === typeof ($cookieStore.get("category"))){
+    $cookieStore.put("category", []);
+  }
+  if("undefined" === typeof ($cookieStore.get("dishesselected"))){
+    $cookieStore.put("dishesselected", []);
+  }
 
-  this.category = [];
-
+  this.category = $cookieStore.get("category");
+  this.dishesselected = $cookieStore.get("dishesselected");
 
   this.getNumberOfGuests = function(){
-    return numberofguests;
+    return $cookieStore.get("numberofguests");
   }
 
   this.setNumberOfGuests = function(num) {
-    numberofguests = num;
+    $cookieStore.put("numberofguests", num);
   }
 
   //Returns the dish that is on the menu for selected type 
@@ -103,9 +108,12 @@ dinnerPlannerApp.factory('Dinner',function ($q, $resource) {
     if(catExist === false && isExist === false){
       this.category.push(cat);
       this.dishesselected.push(id);
+      $cookieStore.put("category", this.category);
+      $cookieStore.put("dishesselected", this.dishesselected);
     }else if (catExist === true && isExist === false){
       this.dishesselected.splice(indexId, 1);
       this.dishesselected.push(id);
+      $cookieStore.put("dishesselected", this.dishesselected);
     }else if (catExist === true && isExist === true){
       alert("This dish is already selected!");
     }
@@ -117,6 +125,8 @@ dinnerPlannerApp.factory('Dinner',function ($q, $resource) {
       if (id == this.dishesselected[key]){
         this.dishesselected.splice(key, 1);
         this.category.splice(key, 1);
+        $cookieStore.put("category", this.category);
+        $cookieStore.put("dishesselected", this.dishesselected);
       }
     }
   }

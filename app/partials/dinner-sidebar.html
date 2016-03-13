@@ -13,12 +13,12 @@
         </strong>
 	</div>
 	<div class="menu">
-		<div ng-repeat="item in menu" id='RecipeID' class='Category' style='border:2px solid black; margin:10px 0 12px 0; padding:7px 7px 7px 5px;'>
+		<div ng-repeat="item in menu" id='{{item.RecipeID}}' class='Category' style='border:2px solid black; margin:10px 0 12px 0; padding:7px 7px 7px 5px;'>
 			<div style='overflow:hidden;'>
 				<span style='float:left;'>{{item.Title}}</span>
 				<span style='float:right;'>{{item.dishPrice}} SEK</span>
 			</div>
-			<button type='button' id='removeButton' class='close' data-id='dish.RecipeID' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+			<button type='button' ng-click="removeDish($event)" class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
 		</div>
 		<div style='overflow:hidden;'>
 			<span style='float:left;'>pending</span><span id='pending' style='float:right;'>0.00</span>

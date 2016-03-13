@@ -1,9 +1,16 @@
 // Dinner controller that we use whenever we have view that needs to 
 // display or modify the dinner menu
 dinnerPlannerApp.controller('DinnerCtrl', function ($scope,Dinner) {
-	$scope.numberOfGuests = Dinner.getNumberOfGuests();
-	
-	$scope.menu = Dinner.getFullMenu();
+
+  $scope.getNumberOfGuests = function() {
+    return Dinner.getNumberOfGuests();
+  }
+
+  // TODO in Lab 5: Implement the methods to get the dinner menu
+  // add dish to menu and get total menu price
+
+  $scope.getFullMenu = function(){
+  	$scope.menu = Dinner.getFullMenu();
 	for(i=0; i<$scope.menu.length; i++){
 		var dish;
 		$scope.menu[i].$promise.then(function(dish){
@@ -15,21 +22,29 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope,Dinner) {
 			dish.dishPrice = Number(dishPrice).toFixed(2);
 		});
 	}
+  }
+
+	$scope.getTotalMenuPrice = function(){
+		Dinner.getTotalMenuPrice().promise.then(function(res){
+			$scope.totalCost = Number(res).toFixed(2);
+		});
+	}
 	
-	Dinner.getTotalMenuPrice().promise.then(function(res){
-		$scope.totalCost = Number(res).toFixed(2);
-	});
+	$scope.numberOfGuests = $scope.getNumberOfGuests();
+	$scope.getFullMenu();
+	$scope.getTotalMenuPrice();
 
-  $scope.setNumberOfGuest = function(number){
-    Dinner.setNumberOfGuests(number);
-    $scope.$parent.numberOfGuests = $scope.getNumberOfGuests();
-  }
+	$scope.setNumberOfGuest = function(number){
+	  Dinner.setNumberOfGuests(number);
+	  $scope.$parent.numberOfGuests = $scope.getNumberOfGuests();
+	  $scope.getFullMenu();
+	  $scope.getTotalMenuPrice();
+	}
 
-  $scope.getNumberOfGuests = function() {
-    return Dinner.getNumberOfGuests();
-  }
-
-  // TODO in Lab 5: Implement the methods to get the dinner menu
-  // add dish to menu and get total menu price
+	$scope.removeDish = function(obj){
+		Dinner.removeDishFromMenu(obj.target.parentNode.id);
+		$scope.getFullMenu();
+		$scope.getTotalMenuPrice();
+	}
 
 });
