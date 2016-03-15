@@ -10,15 +10,29 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
   $scope.numberOfGuests = Dinner.getNumberOfGuests();
 
   var dishId = $routeParams.dishId;
-   Dinner.Dish.get({id:dishId},function(data){
-     $scope.dish=data;
-     $scope.cat = data.Category;
-     for (i=0; i < data.Ingredients.length; i++) {
-     	$scope.price = $scope.price + parseFloat(data.Ingredients[i].MetricQuantity)*Dinner.getNumberOfGuests();
-  	};
-   },function(data){
-     $scope.status = "There was an error";
-   });
+  Dinner.Dish.get({id:dishId},function(data){
+    $scope.dish=data;
+    $scope.cat = data.Category;
+    var p = 0;
+    for (i=0; i < data.Ingredients.length; i++) {
+   	  p = p + parseFloat(data.Ingredients[i].MetricQuantity)*Dinner.getNumberOfGuests();
+    };
+    $scope.price = Number(p).toFixed(2);
+  },function(data){
+    $scope.status = "There was an error";
+  });
+
+  $scope.isInt = function(n) {
+    return n % 1 === 0;
+  }
+
+  $scope.float2Int = function(number){
+    if($scope.isInt(number)){
+      return number;
+    }else{
+      return Number(number).toFixed(2);
+    }
+  }
 
   $scope.confirmButton = function($event){
   	Dinner.addDishToMenu(dishId, $scope.cat);

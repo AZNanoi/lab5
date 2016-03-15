@@ -3,7 +3,11 @@
 // dependency on any service you need. Angular will insure that the
 // service is created first time it is needed and then just reuse it
 // the next time.
+<<<<<<< HEAD
 dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
+=======
+dinnerPlannerApp.factory('Dinner',function ($q, $resource) {
+>>>>>>> 49985d7728c57f89402085d58521e043502c59b3
   
   var numberofguests = 1;
 
@@ -53,9 +57,12 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
     var allingredients = [];
     for(key in this.dishesselected){
       menuitem = this.Dish.get({id:this.dishesselected[key]}, function(menuitem){
-        return menuitem.Ingredients;
+        return menuitem
       });
-      allingredients.push(menuitem);
+      ingre = menuitem.$promise.then(function(dish){
+        return dish.Ingredients;
+      });
+      allingredients.push(ingre);
     }
     return allingredients;
   }
@@ -63,11 +70,21 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
   this.getTotalMenuPrice = function() {
     var allingredients = this.getAllIngredients();
-    var totalPrice = 0;
-    for(key in allingredients){
-      totalPrice = allingredients[key].Quantity + totalPrice;
-    }
-    return totalPrice * this.getNumberOfGuests();
+    var totalPrice = $q.defer();
+    var self = this;
+    $q.all(allingredients).then(function(allingre){
+      var tot = 0;
+      for(key in allingre){
+        ingre=allingre[key];
+        var a = 0;
+        for(i=0; i<ingre.length; i++){
+          a = a + ingre[i].MetricQuantity;
+        }
+        tot = tot + a;
+      }
+      totalPrice.resolve(tot*self.getNumberOfGuests());
+    });
+    return totalPrice;
   }
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu

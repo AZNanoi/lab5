@@ -3,33 +3,43 @@
 
 <!-- TODO in Lab 5: Display the dish information including image, Description, 
 Instructions, Ingredients and total cost. -->
-<br/>
-<br/>
+<div id="view4">
 	<div>
-		<img ng-src="{{dish.ImageURL}}" style="width:300px; height:300px;"/>
-		</br>
-		<h1>{{dish.Title}}</h1>
-		</br>
-		<h2>Description</h2>
-		{{dish.Description}} 
-		</br>
-		<h2>Instructions</h2>
-		{{dish.Instructions}}
-		</br>
-		<h2>Ingredients</h2>
-		<table>
-			<tr ng-repeat="element in dish.Ingredients">
-				<td width=100px>{{element.MetricQuantity*numberOfGuests}} {{element.MetricUnit}}</td>
-				<td width=300px>{{element.Name}}</td>
-				<td width=100px>{{element.MetricQuantity*numberOfGuests}} SEK</td>
-			</tr>
-		</table>
-
-		</br>
-		</br>
-		<span>Total Cost: SEK {{price}}</span>
-		</br>
-		<a href="#/search" ng-click="confirmButton()" class="btn btn-primary">Confirm</a>
-		<a href="#/search" class="btn btn-primary">Back</a>
+		<div class="view4Box1">
+			<img ng-src="{{dish.ImageURL}}" style="width:300px; height:300px;"/>
+			</br>
+			<h1>{{dish.Title}}</h1>
+			</br>
+			</br>
+			<h2>Description</h2>
+			{{dish.Description}}
+			</br></br>
+			<a href="#/search" class="btn btn-primary" style='display:block;'>Back to Select Dish</a>
 		{{status}}
+<<<<<<< HEAD
 	</div>
+=======
+		</div>
+		<div class="view4Box2">
+			<h3><strong>INGREDIENTS FOR {{numberOfGuests}} PEOPLE</strong></h3>
+			<hr/>
+				<table>
+					<tr ng-repeat="element in dish.Ingredients">
+						<td width=100px>{{float2Int(element.MetricQuantity*numberOfGuests)}} {{element.MetricUnit}}</td>
+						<td width=300px>{{element.Name}}</td>
+						<td width=100px>{{float2Int(element.MetricQuantity*numberOfGuests)}} SEK</td>
+					</tr>
+				</table>
+			<hr/>
+			<a href="#/search" ng-click="confirmButton()" class="btn btn-primary" style='float:left;'>Confirm Dish</a>
+			<span style='float:right;'>Price: SEK {{price}}</span>
+		</div>
+		<div class="view4Box3">
+			<br/>
+			<strong>PREPERATION/Instructions</strong>
+			<br/><br/>
+			{{dish.Instructions}}
+		</div>
+	</div>
+</div>
+>>>>>>> 49985d7728c57f89402085d58521e043502c59b3

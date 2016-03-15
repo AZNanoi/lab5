@@ -1,14 +1,45 @@
-People: <input type="number" ng-model="numberOfGuests" ng-change="setNumberOfGuest(numberOfGuests)"/>
+<div id="view2">
+	<div class="view2Box1">
+        <h3>My Dinner</h3>
+        <br/>
+		People: <input type="number" ng-model="numberOfGuests" ng-change="setNumberOfGuest(numberOfGuests)"/>
+	</div>
 
-<!-- TODO in Lab 5: Display the items on the menu with cost for each -->
-<div>
-	<strong>Dish Name</strong><strong>Cost</strong>
-	<div ng-repeat="item in menu"><span>{{item.Title}}</span><span>{{item.dishPrice}} SEK</span></div>
-</div>
+	<!-- TODO in Lab 5: Display the items on the menu with cost for each -->
+	<div class="view2Box2">
+		<strong>
+			<span style="float:left;">Dish Name</span>
+	        <span style="float:right;">Cost</span>
+        </strong>
+	</div>
+	<div class="menu">
+		<div ng-repeat="item in menu" id='RecipeID' class='Category' style='border:2px solid black; margin:10px 0 12px 0; padding:7px 7px 7px 5px;'>
+			<div style='overflow:hidden;'>
+				<span style='float:left;'>{{item.Title}}</span>
+				<span style='float:right;'>{{item.dishPrice}} SEK</span>
+			</div>
+			<button type='button' id='removeButton' class='close' data-id='dish.RecipeID' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+		</div>
+		<div style='overflow:hidden;'>
+			<span style='float:left;'>pending</span><span id='pending' style='float:right;'>0.00</span>
+		</div>
+		<hr/>
+		<span id='menuCost' style='float:right;'>Total cost: {{totalCost}} SEK</span>
+	</div>
 
+<<<<<<< HEAD
 <!-- Displaying number of guests both in input box and here is redundant. It is here only for the example
 purpose so you can see how some information from the model can be retrieved. In Lab 5 you will replace 
 this with Total price of the menu -->
 Total cost: {{totalCost}}
 <br/>
 <a href="#/overview" class="btn btn-primary">Confirm Dinner</a>
+=======
+	<hr/>
+	<!-- Displaying number of guests both in input box and here is redundant. It is here only for the example
+	purpose so you can see how some information from the model can be retrieved. In Lab 5 you will replace 
+	this with Total price of the menu -->
+
+	<button id="confirm" type="button" class="btn btn-primary" style="width:80%; border:2px solid gray;">Confirm Dinner</button>
+</div>
+>>>>>>> 49985d7728c57f89402085d58521e043502c59b3

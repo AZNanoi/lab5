@@ -1,0 +1,183 @@
+body {
+	height: 100vh;
+}
+h1 {
+	display: inline;
+}
+h2 {
+	margin:0 !important;
+
+}
+h3{
+	margin:0 !important;
+
+}
+hr {
+	margin:5px;
+}
+img {
+	vertical-align: baseline;
+}
+#header {
+	background-color: #f0ad4e;
+	padding: 15px;
+}
+#view1 {
+	position: absolute;
+	background-image: url("images/bg.jpg");
+	background-size: 100% 100%;
+	width: 100%;
+	height: 92%;
+}
+#view1>div {
+	margin-top: 15%;
+	width: 40%;
+	background-color: rgba(255,255,255,0.5);
+	padding: 10px 5px 15px 15px;
+}
+button {
+	background-color: #f0ad4e;
+	border:2px solid black;
+}
+#view1>div>button {
+	display: block;
+}
+#view2 {
+	border: 1px solid black;
+	width: 20%;
+	/*height: 500px;*/
+	text-align:center;
+	display: inline-block;
+	padding-bottom: 15px;
+}
+.view2Box1 {
+	border: 0px solid black;
+	padding:10px 0 10px 10px;
+	text-align:left;
+}
+.view2Box1>button {
+	border: 1px solid black;
+	background-color: white;
+}
+.view2Box2 {
+	border: 1px solid black;
+	padding:0px 10px 0px 10px;
+	height:25px;
+
+}
+#view2 .menu {
+	border: 0px solid black;
+	padding:0px 10px 0px 10px;
+	overflow: hidden;
+	color: red;
+}
+
+#view3 {
+	display: hidden;
+	border: 1px solid black;
+	width: 80%;
+	height: auto;
+	padding:15px 10px 15px 10px;
+	position: absolute;
+	display: inline-block;
+}
+.view3Box1 {
+	border: 1px solid black;
+	padding:10px 50px 15px 50px;
+	background-color: #ffd700;
+}
+.view3Box2 {
+	padding-top:25px;
+	padding-bottom: 25px;
+}
+.view3Box1>select {
+	width: 10%;
+	margin-left: 10%;
+}
+.container-fluid {
+	padding: 0;
+}
+#view4 {
+	border: 1px solid black;
+	width: 80%;
+	height: auto;
+	position: absolute;
+	display: inline-block;
+}
+#view4 div {
+	display: inline-block;
+}
+.view4Box1 {
+	display: inline-block;
+	width: 42.5%;
+	margin-left: 5%;
+	overflow: hidden;
+	text-align: center;
+}
+.view4Box2 {
+	display: inline-block;
+	width: 42.5%;
+	margin-left: 5%;
+	overflow: hidden;
+	/*position: absolute;*/
+	background-color: #ffd700;
+	padding: 15px;
+	border: 1px solid black;
+}
+.view4Box3 {
+	display: inline-block;
+	width: 85%;
+	margin-left: 5%;
+	overflow: hidden;
+	margin-top: 20px; 
+}
+#view5 {
+	border: 1px solid black;
+	width: 100%;
+	height: 92%;
+	position: absolute;
+}
+.view5Box1 {
+	border: 1px solid black;
+	padding:10px 10px 15px 25px;
+	background-color: #ffd700;
+	padding: 10px;
+}
+.view5Box2 {
+	text-align: center;
+	padding:30px 10px 10px 30px;
+}
+.view5Box2 .selectedMenu {
+	padding:30px 0px 30px 0px;
+}
+
+#view6{
+	width: 100%;
+	height: 92%;
+}
+
+.view6Box1 {
+	border: 1px solid black;
+	padding:10px 10px 15px 25px;
+	background-color: #ffd700;
+	padding: 10px;
+}
+.view6Box2 {
+	border: 1px solid black;
+	padding:10px 10px 15px 25px;
+}
+button.close {
+	border-radius:30px;
+	width: 24px;
+	height: 24px;
+	padding-top: -15px;
+	border: 2px solid black;
+	margin: -5px -17px 0 0;
+	background-color: orange;
+	opacity: 1;
+}
+button.close:hover {
+	opacity: 1;
+	background-color: red;
+	border-color: gray;
+}
