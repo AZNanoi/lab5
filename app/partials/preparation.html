@@ -1,0 +1,32 @@
+<div>
+<!-- <div ng-repeat="dish in dishes">
+	<img ng-src="{{dish.ImageURL}}" style="height:200px; width:200px;"/>
+	<h1>{{dish.Title}}<h1>
+	<h2>{dish.Description}}<h2>
+	<h2>{{dish.Instructions}}<h2>
+</div> -->
+</div>
+<div id="view6">
+	<div class="view6Box1">
+		<strong>
+			<span style="float:left;">My Dinner: {{numberOfGuests}} people</span>
+		</strong>
+		<a ng-href="#/search" class="btn btn-primary" style="float:right;">Go Back and Edit Dinner</a>
+	</div>
+	<div class="view6Box2">
+		<div ng-repeat="dish in menu" style='display: inline-block; width: 100%; padding-bottom:50px;'>
+			<div style='display: inline-block; width:700px; margin-top: 2%;'>
+				<img ng-src='{{dish.ImageURL}}' style='width:200px; height:200px;'/>
+				<span style='width:400px; display:inline-block; margin-left: 5%; position: absolute;'>
+				<h2>{{dish.Title}}</h2>
+				<br>
+				{{dish.Description}}</span>
+			</div>
+			<div style='display:inline-block; width:400px; margin-left: 5%; margin-top: 2%;'>
+				<strong>PREPARATION</strong>
+				<br></br>
+				{{dish.Instructions}}
+			</div>
+		</div>
+	</div>
+</div>

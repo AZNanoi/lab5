@@ -1,0 +1,24 @@
+<div id="view5">
+	<div class="view5Box1">
+		<strong>
+			<span style="float:left;">My Dinner: {{numberOfGuests}} people</span>
+		</strong>
+		<a ng-href="#/search" class="btn btn-primary" style="float:right;">Go Back and Edit Dinner</a>
+	</div>
+
+	<div class="view5Box2">
+		<div class="selectedMenu">
+			<div ng-repeat="dish in menu" style='margin-left:5%; display:inline-block; position:relative; overflow:hidden; width:150px;'>
+				<img ng-src="{{dish.ImageURL}}" style='width:100%; height:100px;'/>
+				<button style='display:block; width:100%;'>{{dish.Title}}</button>
+				<span style='color:red; float:right;'>{{dish.dishPrice}} SEK</span>
+			</div>
+
+			<div style='text-align:left; padding-left:10px; margin-left:5%; display:inline-block; position:relative; overflow:hidden; width:150px; height:150px; border-left:2px solid black;'>
+				<span style='position:absolute; bottom:0;'>Total:<br/><span style='color:red;'>{{totalCost}} SEK</span></span>
+			</div>
+		</div>
+		<hr/>
+		<a ng-href="#/preparation" class="btn btn-primary">Print Full Menu</a>
+	</div>
+</div>
