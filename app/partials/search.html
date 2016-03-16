@@ -9,7 +9,8 @@ not support it in free version) and list all the dishes that match the search. -
         <hr/>
         <input ng-model="query" placeholder="Search for dishes here"/>
 		<button ng-click="search(query)">Find</button>
-		{{status}}
+		<span ng-show="success">{{status}}</span>
+		<span ng-show="error" style="color:red;">{{status}}</span>
 	</div>
 	<div class="view3Box2">
 		<div ng-repeat="dish in dishes" style='margin-left:5%; display:inline-block; position:relative; overflow:hidden; width:150px; height:200px;'>

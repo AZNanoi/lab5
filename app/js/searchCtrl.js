@@ -3,16 +3,22 @@
 dinnerPlannerApp.controller('SearchCtrl', function ($scope,Dinner,$cookieStore) {
   $scope.pending = 0;
   $scope.totalCost = 0;
+  $scope.success = true;
+  $scope.error = false;
 
   // TODO in Lab 5: you will need to implement a method that searchers for dishes
   // including the case while the search is still running.
   $scope.search = function(query) {
     $cookieStore.put("query", query);
-   $scope.status = "Searching...";
+    $scope.status = "Searching...";
    Dinner.DishSearch.get({title_kw:query},function(data){
+     $scope.success = true;
+     $scope.error = false;
      $scope.dishes=data.Results;
      $scope.status = "Showing " + data.Results.length + " results";
    },function(data){
+     $scope.success = false;
+     $scope.error = true;
      $scope.status = "There was an error";
    });
   }

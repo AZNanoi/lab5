@@ -45,7 +45,7 @@ dinnerPlannerApp.factory('Dinner',function ($q, $resource, $cookieStore) {
       item = this.Dish.get({id:this.dishesselected[key]}, function(menuitem){
         return menuitem;
       }, function(menuitem){
-        return menuitem.Message;
+        return "error";
       });
       fullmenu.push(item);
     }
